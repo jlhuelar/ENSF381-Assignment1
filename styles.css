@@ -8,6 +8,10 @@
     color: white;
 }
 
+.index-header img {
+    width: 100px
+}
+
 .navigation-bar {
     display: flex;
     justify-content: space-around;
