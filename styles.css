@@ -144,3 +144,63 @@
 .signup-link:hover {
     text-decoration: underline;
 }
+
+/* Main content styling */
+main {
+    background-color: #ddd;
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Product container styling */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Product item styling */
+.product-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex-basis: calc(50% - 40px); /* Adjust the width minus margin */
+    box-sizing: border-box;
+}
+
+.product-item:hover {
+    background-color: #ffffff;
+}
+
+/* Product image styling */
+.product-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Product price styling */
+.product-item p {
+    color: #007BFF;
+    font-weight: bold;
+    /* Additional styling if necessary */
+}
+
+/* Add to cart button styling */
+.product-item button {
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-item button:hover {
+    background-color: #45A049;
+}
