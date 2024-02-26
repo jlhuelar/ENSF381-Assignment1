@@ -92,11 +92,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    height: auto; 
+    background-color: #ddd; 
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 .login-form {
-    background-color: #ddd;
     padding: 40px;
     border-radius: 10px;
     width: 300px;
