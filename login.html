@@ -21,7 +21,7 @@
         </nav>
     </div>
     <main class="login-main">
-        <form class="login-form">
+        <form class="login-form" id="loginForm">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your username">
             <label for="password">Password:</label>
@@ -30,8 +30,47 @@
             <a href="signup.html" class="signup-link">Signup</a>
         </form>
     </main>
+    <div class="message-box" id="messageBox">
+        <p id="messageText"></p>
+    </div>
     <footer class="index-footer">
         <p>&copy; 2024 Seacho. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const usernameInput = document.getElementById('username').value;
+    const passwordInput = document.getElementById('password').value;
+    const messageBox = document.getElementById('messageBox');
+    const messageText = document.getElementById('messageText');
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            const user = data.find(user => user.username === usernameInput && user.email === passwordInput);
+            if (user) {
+                messageText.textContent = 'Login successful!';
+                messageBox.style.borderColor = 'green';
+            } else {
+                messageText.textContent = 'Invalid username or password!';
+                messageBox.style.borderColor = 'red';
+            }
+            messageBox.style.display = 'block'; 
+        })
+        .catch(error => {
+            messageText.textContent = 'Failed to fetch user data. Please try again later.';
+            messageBox.style.borderColor = 'red';
+            messageBox.style.display = 'block'; 
+            console.error('Fetch error:', error);
+        });
+});
+    </script>
 </body>
 </html>
