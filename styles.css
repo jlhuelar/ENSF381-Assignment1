@@ -208,3 +208,36 @@
 .product-item button:hover {
     background-color: #45A049;
 }
+
+.cart-container {
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.cart-display {
+    margin-top: 20px;
+    border: none;
+    padding: 10px;
+}
+
+.cart-item {
+    margin-bottom: 10px;
+}
+
+.remove {
+    background-color: #4CAF50;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove:hover {
+    background-color: #ff0000;
+}
