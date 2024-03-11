@@ -246,7 +246,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
+    height: auto; 
+    background-color: #ddd; 
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
     
 }
 
@@ -296,10 +300,12 @@
 
 #message-box {
     border: 2px solid #ccc;
-    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; 
+    background-color: #f9f9f9; 
     padding: 10px;
-    margin: 20px auto; /* Centers the message box */
-    text-align: center;
-    width: fit-content; /* Adjusts width to the content within */
-    display: none; /* Start with the box hidden */
+    margin: 20px;
+    border-radius: 10px;
 }
