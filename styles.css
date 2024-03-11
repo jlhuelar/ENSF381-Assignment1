@@ -240,6 +240,8 @@
 
 .remove:hover {
     background-color: #ff0000;
+}
+
 .signup-main {
     display: flex;
     justify-content: center;
