@@ -1,0 +1,157 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="index-header">
+        <img src="images/Seacho.png" alt="Company Logo" style="float:left;" width="4%" height="4%">
+        <h1>Seacho</h1>
+    </header>
+    <div class="navigation-bar">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </div>
+    <main class="signup-main">
+        <form class="signup-form" action="your-server-side-script" method="post">
+
+            <!-- Username input -->
+            <label for="username">Username:</label>
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              placeholder="Enter your username" 
+              pattern="[A-Za-z][A-Za-z0-9_-]{2,19}" 
+              title="Username should start with a letter and be 3-20 characters long. Allowed characters: letters, numbers, hyphens (-), and underscores (_)."
+              required 
+            >
+          
+            <!-- Password input -->
+            <label for="password">Password:</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="Enter your password" 
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+[\]{}|;:'\,.<>?/`~]).{8,}"
+              title="Password must be at least 8 characters long, containing at least one uppercase letter, one lowercase letter, one number, and one special character."
+              required 
+            >
+          
+            <!-- Confirm Password input -->
+            <label for="confirm-password">Confirm Password:</label>
+            <input 
+              type="password" 
+              id="confirm-password" 
+              name="confirm-password" 
+              placeholder="Confirm your password" 
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+[\]{}|;:'\,.<>?/`~]).{8,}" 
+              title="Please make sure your password matches the above criteria."
+              required 
+            >
+          
+            <!-- Email input -->
+            <label for="email">Email:</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="Enter your email" 
+              required 
+            >
+          
+            <button type="submit">Signup</button>
+          </form>
+    </main>
+
+    <div id="message-box" style="display: none;">
+        <p id="message-content"></p>
+    </div>
+
+    <footer class="index-footer">
+        <p>&copy; 2024 Seacho. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var password = document.getElementById("password");
+    var confirmPassword = document.getElementById("confirm-password");
+    var form = document.querySelector('.signup-form');
+    var messageBox = document.getElementById('message-box');
+    var messageContent = document.getElementById('message-content');
+  
+    function validatePasswordMatch() {
+        if (password.value !== confirmPassword.value) {
+            messageContent.textContent = "Passwords don't match.";
+            messageBox.style.display = 'block';
+            return false;
+        } else {
+            messageBox.style.display = 'none'; // Hide the message box if passwords match
+            return true;
+        }
+    }
+  
+    function validatePasswordComplexity(password) {
+        // Check password against the complexity requirements
+        return password.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()\-_=+\[\]{}|;:'",.<>?/`~]).{8,}/);
+    }
+  
+    password.onchange = validatePasswordMatch;
+    confirmPassword.onkeyup = validatePasswordMatch;
+  
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the form from submitting
+
+        let hasError = false;
+        let message = "";
+
+        // Username validation
+        const username = document.getElementById('username').value;
+        if (!username.match(/^[A-Za-z][A-Za-z0-9_-]{2,19}$/)) {
+            hasError = true;
+            message += "Check the Username.\n";
+        }
+
+        // Password validation
+        const passwordValue = password.value;
+        if (!validatePasswordComplexity(passwordValue)) {
+            hasError = true;
+            message += "Check the Password.\n";
+        }
+
+        // Confirm Password validation
+        if (!validatePasswordMatch()) {
+            hasError = true; // Message is already set in validatePasswordMatch
+        }
+
+        // Email validation
+        const email = document.getElementById('email').value;
+        if (!email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
+            hasError = true;
+            message += "Check the Email.\n";
+        }
+
+        // Display message
+        if (hasError) {
+            messageContent.textContent = message.trim();
+            messageBox.style.display = 'block'; // Show the message box
+        } else {
+            messageContent.textContent = "Signup successful!";
+            messageBox.style.display = 'block'; // Show the success message
+        }
+    });
+});
+
+  </script>

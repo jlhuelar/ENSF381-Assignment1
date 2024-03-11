@@ -240,4 +240,64 @@
 
 .remove:hover {
     background-color: #ff0000;
+.signup-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
+}
+
+.signup-form {
+    background-color: #ddd;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content; /* Adjusts width to content */
+}
+
+.signup-form label {
+    display: block;
+    margin: 10px 0;
+}
+
+.signup-form input {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: calc(100% - 20px); /* Full width minus padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.signup-form button {
+    background-color: #4CAF50;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    width: calc(100% - 20px);
+    opacity: 0.5;
+    cursor: pointer;
+    box-sizing: border-box;
+    
+}
+
+.signup-form button:hover {
+    background-color: #45A049;
+    opacity: 1.0;
+}
+
+#message-box {
+    border: 2px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin: 20px auto; /* Centers the message box */
+    text-align: center;
+    width: fit-content; /* Adjusts width to the content within */
+    display: none; /* Start with the box hidden */
 }
