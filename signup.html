@@ -21,7 +21,7 @@
         </nav>
     </div>
     <main class="signup-main">
-        <form class="signup-form" action="your-server-side-script" method="post">
+        <form class="signup-form" action="your-server-side-script" method="post" novalidate>
             <!-- Username input -->
             <label for="username">Username:</label>
             <input 
@@ -65,6 +65,7 @@
               id="email" 
               name="email" 
               placeholder="Enter your email" 
+              title="Please make sure your email follows proper email format(e.g. username@example.com). Ensure your email contains no spaces and must contain the @ symbol followed by a domain."
               required 
             >
           
@@ -111,46 +112,50 @@
     confirmPassword.onkeyup = validatePasswordMatch;
   
     form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent the form from submitting
+    e.preventDefault(); // Prevent the form from submitting
 
-        let hasError = false;
-        let message = "";
+    let hasError = false;
+    let messages = []; // Use an array to store all messages
 
-        // Username validation
-        const username = document.getElementById('username').value;
-        if (!username.match(/^[A-Za-z][A-Za-z0-9_-]{2,19}$/)) {
-            hasError = true;
-            message += "Check the Username.\n";
-        }
+    // Username validation
+    const username = document.getElementById('username').value;
+    if (!username.match(/^[A-Za-z][A-Za-z0-9_-]{2,19}$/)) {
+        hasError = true;
+        messages.push("Check the Username."); // Add message to array
+    }
 
-        // Password validation
-        const passwordValue = password.value;
-        if (!validatePasswordComplexity(passwordValue)) {
-            hasError = true;
-            message += "Check the Password.\n";
-        }
+    // Password validation
+    const passwordValue = password.value;
+    if (!validatePasswordComplexity(passwordValue)) {
+        hasError = true;
+        messages.push("Check the Password."); // Add message to array
+    } else if (password.value !== confirmPassword.value) {
+        // Only add password mismatch error if complexity is fine
+        hasError = true;
+        messages.push("Passwords don't match."); // Add message to array
+    }
 
-        // Confirm Password validation
-        if (!validatePasswordMatch()) {
-            hasError = true; // Message is already set in validatePasswordMatch
-        }
+    // Email validation
+    const email = document.getElementById('email').value;
+    if (!email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
+        hasError = true;
+        messages.push("Check the Email."); // Add message to array
+    }
 
-        // Email validation
-        const email = document.getElementById('email').value;
-        if (!email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) {
-            hasError = true;
-            message += "Check the Email.\n";
-        }
-
-        // Display message
-        if (hasError) {
-            messageContent.textContent = message.trim();
-            messageBox.style.display = 'block'; // Show the message box
-        } else {
-            messageContent.textContent = "Signup successful!";
-            messageBox.style.display = 'block'; // Show the success message
-        }
-    });
+    // Display messages
+    if (hasError) {
+        // Clear the previous messages
+        messageContent.innerHTML = "";
+        // Append new messages
+        messages.forEach(function(msg) {
+            messageContent.innerHTML += msg + "<br>";
+        });
+        messageBox.style.display = 'block'; // Show the message box
+    } else {
+        messageContent.textContent = "Signup successful!";
+        messageBox.style.display = 'block'; // Show the success message
+    }
+});
 });
 
   </script>
